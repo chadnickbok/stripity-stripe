@@ -18,34 +18,23 @@ defmodule Stripe.Mixfile do
         "vcr.check": :test,
         "vcr.show": :test
       ],
-      deps: deps(Mix.env) ]
+      deps: [
+        {:httpoison, ">= 0.0.0" },
+        {:poison, ">= 0.0.0", optional: true},
+        {:ex_doc, ">= 0.0.0", only: :dev},
+        {:earmark, ">= 0.0.0", only: :dev},
+        {:excoveralls, ">= 0.0.0", only: :test},
+        {:exvcr, ">= 0.0.0", only: :test},
+        {:mock, ">= 0.0.0", only: :test},
+        {:inch_ex, ">= 0.0.0", only: [:dev, :test]}
+      ]
+    ]
   end
 
   # Configuration for the OTP application
   def application do
     [
       applications: [:httpoison]
-    ]
-  end
-
-  defp deps(:dev) do
-    deps(:prod)
-  end
-
-  defp deps(:test) do
-    deps(:dev)
-  end
-
-  defp deps(:prod) do
-    [
-      {:httpoison, ">= 0.0.0" },
-      {:poison, ">= 0.0.0", optional: true},
-      {:ex_doc, ">= 0.0.0", only: :dev},
-      {:earmark, ">= 0.0.0", only: :dev},
-      {:excoveralls, ">= 0.0.0", only: :test},
-      {:exvcr, ">= 0.0.0", only: :test},
-      {:mock, ">= 0.0.0", only: :test},
-      {:inch_ex, ">= 0.0.0", only: [:dev, :test]}
     ]
   end
 
